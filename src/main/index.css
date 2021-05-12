@@ -1,0 +1,109 @@
+/* <!-- 로그인,
+회원가입 버튼 -- >  */
+
+a:link {
+  color: inherit;
+  text-decoration: none;
+}
+a:visited {
+  color: inherit;
+  text-decoration: none;
+}
+a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+a:active {
+  color: inherit;
+  text-decoration: none;
+}
+
+#banner {
+  height: 300px;
+  background-color: #59ba90;
+}
+
+#banner > img {
+  width: 100%;
+
+  height: 300px;
+}
+
+#body > h1 {
+  margin-top: 20px;
+}
+
+#product-list {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  margin-top: 20px;
+}
+
+.product-card {
+  width: 180px;
+
+  height: 300px;
+
+  margin-right: 12px;
+
+  margin-bottom: 12px;
+
+  border: 1px solid #59ba90;
+
+  border-radius: 12px;
+
+  overflow: hidden;
+}
+.product-ex {
+  width: 100%;
+  height: 110px;
+
+  text-align: center;
+  padding-top: 80px;
+  border-color: gray;
+  /* 나중에 지워야 됨!! */
+}
+.product-img {
+  width: 100%;
+
+  height: 200px;
+}
+
+.product-contents {
+  display: flex;
+
+  flex-direction: column;
+
+  padding: 8px;
+}
+
+.product-name {
+  font-size: 14px;
+}
+
+.product-price {
+  font-size: 16px;
+
+  font-weight: 600;
+
+  margin-top: 4px;
+}
+
+.product-seller {
+  display: flex;
+
+  align-items: center;
+
+  margin-top: 12px;
+}
+
+.product-avatar {
+  width: 24px;
+}
+
+.product-link {
+  color: inherit;
+  text-decoration: none;
+}
