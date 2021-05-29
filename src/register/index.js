@@ -25,6 +25,7 @@ const RegisterPage = () => {
         user: values.user,
         password: values.password,
         name: values.name,
+        nickname: values.nickname,
         year: values.year,
         month: values.month,
         day: values.day,
@@ -69,7 +70,7 @@ const RegisterPage = () => {
           <Input
             type="password"
             className="register-input"
-            placeholder="비밀번호를 확인 해주세요."
+            placeholder="비밀번호를 확인해주세요."
           />
         </Form.Item>
         <div className="register-title">이름</div>
@@ -79,7 +80,17 @@ const RegisterPage = () => {
         >
           <Input
             className="register-input"
-            placeholder="이름을 작성 해주세요."
+            placeholder="이름을 입력하세요."
+          />
+        </Form.Item>
+        <div className="register-title">닉네임</div>
+        <Form.Item
+          name="nickname"
+          rules={[{ required: true, message: "필수 입력 사항입니다" }]}
+        >
+          <Input
+            className="register-input"
+            placeholder="닉네임을 입력하세요."
           />
         </Form.Item>
         <div className="register-title">생년월일</div>
