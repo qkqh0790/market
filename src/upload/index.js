@@ -9,32 +9,32 @@ import {
 } from "antd";
 import "./index.css";
 import { ForkOutlined } from "@ant-design/icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { API_URL } from "../config/constants";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
 function UploadPage() {
+  const [userId, setUserId] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
   const history = useHistory();
 
   const onSubmit = (values) => {
     axios
-    .post(`${API_URL}/products`, {
-      name: values.name,
-      description: values.description,
-      seller: values.seller,
-      price: parseInt(values.price),
-      imageUrl: imageUrl,
-    })
-    .then((result) => {
-      console.log(result);
-      history.replace("/");
-    })
-    .catch((error) => {
-      console.error(error);
-      message.error(`에러가 발생했습니다. ${error.message}`);
-    });
+      .post(`${API_URL}/products`, {
+        name: values.name,
+        description: values.description,
+        seller: userId,
+        price: parseInt(values.price),
+        imageUrl: imageUrl,
+      })
+      .then((result) => {
+        history.replace("/");
+      })
+      .catch((error) => {
+        console.error(error);
+        message.error(`에러가 발생했습니다. ${error.message}`);
+      });
   };
   const onChangeImage = (info) => {
     if (info.file.status === "uploading") {
@@ -46,6 +46,11 @@ function UploadPage() {
       setImageUrl(imageUrl);
     }
   };
+
+  useEffect(() => {
+    const idValue = localStorage.getItem("login");
+    setUserId(idValue);
+  }, []);
   return (
     <div id="upload-container">
       <Form name="상품 업로드" onFinish={onSubmit}>
@@ -53,7 +58,7 @@ function UploadPage() {
           name="upload"
           label={<div className="upload-label">상품 사진</div>}
         >
-            <Upload
+          <Upload
             name="image"
             action={`${API_URL}/image`}
             listType="picture"
@@ -61,7 +66,7 @@ function UploadPage() {
             onChange={onChangeImage}
           >
             {imageUrl ? (
-           <img id="upload-img" src={`${API_URL}/${imageUrl}`} />
+              <img id="upload-img" src={`${API_URL}/${imageUrl}`} />
             ) : (
               <div id="upload-img-placeholder">
                 <img src="/images/icons/camera.png" />
@@ -71,18 +76,13 @@ function UploadPage() {
           </Upload>
         </Form.Item>
         <Divider />
-        <Form.Item
-          label={<div className="upload-label">판매자 명</div>}
-          name="seller"
-          rules={[{ required: true, message: "판매자 이름을 입력해주세요" }]}
+        {/* <span style={{ fontSize: "18px", marginLeft: "15px" }}>판매자 명:</span>
+        <span
+          style={{ fontSize: "20px", marginLeft: "10px", fontWeight: "bold" }}
         >
-          <Input
-            className="upload-name"
-            size="large"
-            placeholder="이름을 입력해주세요."
-          />
-        </Form.Item>
-        <Divider />
+          {userId}
+        </span>
+        <Divider /> */}
         <Form.Item
           name="name"
           label={<div className="upload-label">상품 이름</div>}

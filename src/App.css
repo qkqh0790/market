@@ -17,6 +17,7 @@ body,
   display: flex;
   justify-content: center;
   border-bottom: 1px solid gray;
+  background-color: white;
 }
 
 #header-area {
@@ -29,7 +30,6 @@ body,
   align-items: center;
   justify-content: space-between;
 }
-
 #header-area > img {
   width: 128px;
 
@@ -37,7 +37,7 @@ body,
 }
 
 #body {
-  height: 100vh;
+  /* height: 100vh; */
   width: 1024px;
   margin: 0 auto;
   padding-bottom: 24px;

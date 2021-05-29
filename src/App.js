@@ -5,26 +5,46 @@ import { Switch, Route, Link, useHistory } from "react-router-dom";
 import UploadPage from "./upload";
 import ProductPage from "./product";
 import { Button } from "antd";
-import { DownloadOutlined } from "@ant-design/icons";
+import { DownloadOutlined, UserAddOutlined } from "@ant-design/icons";
+import LoginPage from "./login";
+import RegisterPage from "./register";
 
 function App() {
   const history = useHistory();
+  const handleButton = () => {
+    const isLogin = localStorage.getItem("login");
+    if (isLogin) {
+      history.push("/upload");
+    } else {
+      history.push("/login");
+    }
+  };
   return (
     <div>
       <div id="header">
         <div id="header-area">
-          <Link to="/">
-            <img src="/images/icons/logo.png" />
-          </Link>
-          <Button
-            size="large"
-            onClick={function () {
-              history.push("/upload");
-            }}
-            icon={<DownloadOutlined />}
-          >
-            판매하기
-          </Button>
+          <div onClick={() => history.push("/home")}>
+            <img src="/images/icons/logo.png" alt="판매아이콘" />
+          </div>
+          <div>
+            <Button
+              style={{ marginRight: "10px" }}
+              size="large"
+              onClick={function () {
+                history.push("/register");
+              }}
+              icon={<UserAddOutlined />}
+            >
+              회원가입
+            </Button>
+            <Button
+              size="large"
+              onClick={() => handleButton()}
+              icon={<DownloadOutlined />}
+            >
+              판매하기
+            </Button>
+          </div>
         </div>
       </div>
       <div id="body">
@@ -38,9 +58,15 @@ function App() {
           <Route exact={true} path="/upload">
             <UploadPage />
           </Route>
+          <Route exact={true} path="/login">
+            <LoginPage />
+          </Route>
+          <Route exact={true} path="/register">
+            <RegisterPage />
+          </Route>
         </Switch>
       </div>
-      <div id="footer"></div>
+      {/* <div id="footer"></div> */}
     </div>
   );
 }
